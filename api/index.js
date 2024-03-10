@@ -70,6 +70,7 @@ app.post("/register",async(req,res)=>{
         await newUser.save();
         console.log("User saved in db");
         sendVerificationEmail(newUser.email,newUser.verificationToken);
+        res.status(200).json({message:"Registration successfull"});
     }
     catch(error){
         console.log("Error registering user ",error);
@@ -88,6 +89,7 @@ app.get("/verify/:token",async(req,res)=>{
 
         user.verified=true;
         user.verificationToken=undefined;
+        user.save()
         res.status(200).json({message:"Email verified successully"});
     }
     catch(err){
