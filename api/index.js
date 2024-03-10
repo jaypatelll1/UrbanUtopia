@@ -54,6 +54,7 @@ const sendVerificationEmail=async(email,verificationToken)=>{
         console.log("Email ",err)
     }
 }
+
 app.post("/register",async(req,res)=>{
     try{
         const {name,email,password}=req.body;
@@ -69,7 +70,7 @@ app.post("/register",async(req,res)=>{
 
         await newUser.save();
         console.log("User saved in db");
-        sendVerificationEmail(newUser.email,newUser.verificationToken);
+        await sendVerificationEmail(newUser.email,newUser.verificationToken);
         res.status(200).json({message:"Registration successfull"});
     }
     catch(error){
@@ -90,9 +91,35 @@ app.get("/verify/:token",async(req,res)=>{
         user.verified=true;
         user.verificationToken=undefined;
         user.save()
-        res.status(200).json({message:"Email verified successully"});
+        return res.status(200).json({message:"Email verified successully"});
     }
     catch(err){
         res.status(500).json({message: "Email Verification Failed"})
+    }
+})
+
+const generateSecretKey=()=>{
+    const secretKey=crypto.randomBytes(32).toString("hex");
+    return secretKey;
+}
+
+const secretKey=generateSecretKey();
+app.post('/login',async(req,res)=>{
+    try{
+        const {email,password}=req.body;
+
+        const user=await User.findOne({email});
+        if(!user){
+            return res.status(401).json({message:"Invalid email"})
+        }
+        if(user.password!==password){
+            return res.status(401).json({message:"Invalid Password"});
+        }
+        //generate token
+        const token=jwt.sign({userId:user._id},secretKey);
+        res.status(200).json({token});
+    }
+    catch(err){
+        res.status(500).json({message:"Login Failed"})
     }
 })
