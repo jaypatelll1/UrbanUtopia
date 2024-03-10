@@ -35,8 +35,8 @@ const sendVerificationEmail=async(email,verificationToken)=>{
     const transporter=nodemailer.createTransport({
         service:"gmail",
         auth:{
-            user:"mihir625y@gmail.com",
-            pass:'Ashmihir@2246'
+            user:"pateljay8886@gmail.com",
+            pass:'nfig zizp homv kcel'
         }
     })
     const mailOptions={
@@ -47,6 +47,7 @@ const sendVerificationEmail=async(email,verificationToken)=>{
     }
 
     try{
+        
         await transporter.sendMail(mailOptions);
     }
     catch(err){
@@ -56,17 +57,18 @@ const sendVerificationEmail=async(email,verificationToken)=>{
 app.post("/register",async(req,res)=>{
     try{
         const {name,email,password}=req.body;
-
+        console.log(req.body);
         const existingUser=await User.findOne({email});
         if(existingUser){
             return res.status(400).json({message:"Email already registered."})
         }
-
+    
         const newUser=new User({name,email,password});
+        
         newUser.verificationToken=crypto.randomBytes(20).toString('hex');
 
         await newUser.save();
-
+        console.log("User saved in db");
         sendVerificationEmail(newUser.email,newUser.verificationToken);
     }
     catch(error){
