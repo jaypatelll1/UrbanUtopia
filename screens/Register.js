@@ -10,15 +10,16 @@ import {
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 
-export default function Signup() {
+export default function Register() {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
   const handleLogin = () => {
+    console.log("Hello")
     navigation.navigate("Login");
   };
-
+  console.log("Hello");
   return (
     <View>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -72,7 +73,7 @@ export default function Signup() {
         </View>
         <View style={styles.login}>
           <Text style={styles.bottomtext}>Already have an account ?</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleLogin}>
             <Text style={styles.bottombuttontext}> Login</Text>
           </TouchableOpacity>
         </View>

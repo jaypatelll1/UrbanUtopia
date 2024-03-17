@@ -15,8 +15,8 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
-  const handleLogin = () => {
-    navigation.navigate("Login");
+  const handleRegister = () => {
+    navigation.navigate("Register");
   };
 
   return (
@@ -66,7 +66,7 @@ export default function Login() {
         </View>
         <View style={styles.Register}>
           <Text style={styles.bottomtext}>Don’t have an account ? </Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleRegister}>
             <Text style={styles.bottombuttontext}> Register</Text>
           </TouchableOpacity>
         </View>
