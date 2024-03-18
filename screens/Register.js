@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-
+import axios from "axios";
 export default function Register() {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
@@ -19,6 +19,22 @@ export default function Register() {
     console.log("Hello")
     navigation.navigate("Login");
   };
+  const handleRegister=()=>{
+    const user ={
+      email:email,
+      password:password,
+      name:fullName
+    };
+    axios.post("http://localhost:8000/register",user).then((response)=>{
+      console.log(response);
+      setFullName("");
+      setEmail("");
+      setPassword("")
+    }).catch((err)=>{
+      console.log(err);
+    })
+    
+  }
   console.log("Hello");
   return (
     <View>
@@ -67,7 +83,7 @@ export default function Register() {
           />
         </View>
         <View style={styles.buttons}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={handleRegister}>
             <Text style={styles.text}>Register</Text>
           </TouchableOpacity>
         </View>
