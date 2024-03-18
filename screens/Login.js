@@ -14,7 +14,6 @@ export default function Login() {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [fullName, setFullName] = useState("");
   const handleRegister = () => {
     navigation.navigate("Register");
   };
