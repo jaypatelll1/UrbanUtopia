@@ -7,7 +7,7 @@ const Stack = createNativeStackNavigator();
 export default function Appnav() {
   return (
     
-        <Appstack/>
+        <Authstack/>
     
   );
 }
