@@ -43,7 +43,7 @@ const sendVerificationEmail=async(email,verificationToken)=>{
         from:"amazon.com",
         to:email,
         subject:"Email Verification",
-        text:`Please click the following link to verify your email: https://urbanutopia-tsdk.onrender.com/verify/${verificationToken}`
+        text:`Please click the following link to verify your email: https://urbanutopia-5emc.onrender.com/verify/${verificationToken}`
     }
 
     try{

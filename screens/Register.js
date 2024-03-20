@@ -25,7 +25,7 @@ export default function Register() {
       password:password,
       name:fullName
     };
-    axios.post("https://urbanutopia-tsdk.onrender.com/register",user).then((response)=>{
+    axios.post("https://urbanutopia-5emc.onrender.com/register",user).then((response)=>{
       console.log(response);
       setFullName("");
       setEmail("");

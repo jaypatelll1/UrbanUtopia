@@ -7,13 +7,28 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
-
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 export default function Login() {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  useEffect(() => {
+    const checkToken = async () => {
+      try {
+        const token = await AsyncStorage.getItem("authToken");
+        if (token) {
+          navigation.replace("BottomTab");
+        }
+       
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    checkToken();
+  }, []);
   const handleRegister = () => {
     navigation.navigate("Register");
   };
@@ -23,9 +38,12 @@ export default function Login() {
       password: password,
     };
     axios
-      .post("https://urbanutopia-tsdk.onrender.com/login", user)
+      .post("https://urbanutopia-5emc.onrender.com/login", user)
       .then((response) => {
         console.log(response);
+        const token = response.data.token;
+        AsyncStorage.setItem("authToken", token);
+        navigation.replace("BottomTab");
         setEmail("");
         setPassword("");
       })
