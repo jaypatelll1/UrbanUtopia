@@ -5,11 +5,5 @@ import Appstack from "./Appstack";
 
 const Stack = createNativeStackNavigator();
 export default function Appnav() {
-  return (
-    
-        <Authstack/>
-    
-  );
+  return <Authstack />;
 }
-
-

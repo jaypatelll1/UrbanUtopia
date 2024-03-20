@@ -36,7 +36,7 @@ export default function Home({ navigation }) {
 }
 const styles = StyleSheet.create({
   topC: {
-    backgroundColor: "#0F52BA",
+    backgroundColor: "#1A4AFF",
     height: 120,
     borderBottomLeftRadius: 48,
     borderBottomRightRadius: 48,

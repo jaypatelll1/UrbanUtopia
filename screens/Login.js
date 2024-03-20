@@ -17,7 +17,22 @@ export default function Login() {
   const handleRegister = () => {
     navigation.navigate("Register");
   };
-
+  const handleLogin = () => {
+    const user = {
+      email: email,
+      password: password,
+    };
+    axios
+      .post("https://urbanutopia-tsdk.onrender.com/login", user)
+      .then((response) => {
+        console.log(response);
+        setEmail("");
+        setPassword("");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <View>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -41,7 +56,6 @@ export default function Login() {
         </View>
 
         <View style={styles.textbox}>
-          
           <TextInput
             style={styles.input}
             placeholder="Email id"
@@ -59,7 +73,7 @@ export default function Login() {
           />
         </View>
         <View style={styles.buttons}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={handleLogin}>
             <Text style={styles.text}>Login</Text>
           </TouchableOpacity>
         </View>

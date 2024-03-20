@@ -19,22 +19,7 @@ export default function Register() {
     console.log("Hello")
     navigation.navigate("Login");
   };
-  const handleRegister=()=>{
-    const user ={
-      email:email,
-      password:password,
-      name:fullName
-    };
-    axios.post("http://localhost:8000/register",user).then((response)=>{
-      console.log(response);
-      setFullName("");
-      setEmail("");
-      setPassword("")
-    }).catch((err)=>{
-      console.log(err);
-    })
-    
-  }
+  https://urbanutopia-tsdk.onrender.com
   console.log("Hello");
   return (
     <View>
