@@ -39,7 +39,7 @@ const items = [
     text: "Sport",
     key: "sportswear",
   },
-  { id: 6, image: require("../assets/55.jpg"), text: "Home", key: "home_all" },
+  { id: 6, image: require("../assets/66.jpg"), text: "Home", key: "home_all" },
 ];
 
 export default function Home({ navigation }) {
@@ -59,9 +59,8 @@ export default function Home({ navigation }) {
           categories: "home_all",
         },
         headers: {
-          "X-RapidAPI-Key":
-            "c6d16c1501msh24e6f3310e36978p1c6398jsn1529ed171c5b",
-          "X-RapidAPI-Host": "apidojo-hm-hennes-mauritz-v1.p.rapidapi.com",
+          'X-RapidAPI-Key': 'e982043e32mshded2985d7f3ed00p1be005jsn47d9ba0e95c0',
+          'X-RapidAPI-Host': 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
         },
       };
 
@@ -90,9 +89,8 @@ export default function Home({ navigation }) {
           concepts: "H&M MAN",
         },
         headers: {
-          "X-RapidAPI-Key":
-            "c6d16c1501msh24e6f3310e36978p1c6398jsn1529ed171c5b",
-          "X-RapidAPI-Host": "apidojo-hm-hennes-mauritz-v1.p.rapidapi.com",
+          'X-RapidAPI-Key': 'e982043e32mshded2985d7f3ed00p1be005jsn47d9ba0e95c0',
+    'X-RapidAPI-Host': 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
         },
       };
 
@@ -109,14 +107,12 @@ export default function Home({ navigation }) {
     <View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.topC}>
-          <Text style={styles.topT}>Home</Text>
+          <Image style={styles.topI} source={require("../assets/home-icon.png")} />
+          <Image style={styles.topI2} source={require("../assets/home-search.png")} />
+          
         </View>
 
-        <View style={styles.Container}>
-          <View style={styles.searchContainer}>
-            <TextInput style={styles.searchInput} placeholder="Search" />
-          </View>
-        </View>
+       
         <SliderBox
           images={images1}
           style={styles.carousel}
@@ -212,32 +208,18 @@ export default function Home({ navigation }) {
 }
 const styles = StyleSheet.create({
   topC: {
-    backgroundColor: "#1A4AFF",
-    height: 120,
-    borderBottomLeftRadius: 48,
-    borderBottomRightRadius: 48,
+    height: 60,flexDirection:"row",justifyContent:"space-between"
   },
-  topT: {
+  topI: {
+    height: 32,
+    width:202,
     marginTop: 40,
-    marginLeft: "8%",
-    fontWeight: "bold",
-    fontSize: 35,
-    color: "#fff",
-  },
-  Container: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  searchContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#fff",
-    padding: 8,
-
-    borderRadius: 8,
-    width: "90%",
-    height: 43,
-    marginTop: "5%",
+    marginLeft: "4%",
+  },topI2:{
+    height: 20,
+    width:20,
+    marginTop: 45,
+    marginRight: "4%",
   },
   carousel: {
     borderRadius: 16,
@@ -254,11 +236,11 @@ const styles = StyleSheet.create({
   },
   mText: {
     fontSize: 18,
-    fontWeight: "bold",
+    // fontWeight: "bold",
   },
   sText: {
     fontSize: 14,
-    fontWeight: "bold",
+    // fontWeight: "bold",
     marginLeft: "72%",
     marginTop: 9,
   },

@@ -1,4 +1,5 @@
 import React from "react";
+import { Image } from "react-native";
 import Home from "../screens/Home";
 import Profile from "../screens/Profile";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -7,7 +8,6 @@ import Wishlist from "../screens/Wishlist";
 import Login from "../screens/Login";
 import Register from "../screens/Register";
 import Cart from "../screens/Cart";
-import { Ionicons } from "@expo/vector-icons";
 import Categories from "../screens/Categories";
 
 const Tab = createBottomTabNavigator();
@@ -16,20 +16,20 @@ function BottomTab() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
+        tabBarIcon: ({  size }) => {
+          let iconImage;
 
           if (route.name === "Home") {
-            iconName = focused ? "home" : "home-outline";
+            iconImage = require("../assets/home_active.png");
           } else if (route.name === "Wishlist") {
-            iconName = focused ? "heart" : "heart-outline";
+            iconImage = require("../assets/wishlist_active.png");
           } else if (route.name === "Profile") {
-            iconName = focused ? "person" : "person-outline";
+            iconImage = require("../assets/profile_active.png");
           } else if (route.name === "Cart") {
-            iconName = focused ? "cart" : "cart-outline";
+            iconImage = require("../assets/cart_active.png");
           }
 
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return <Image source={iconImage} style={{ width: size, height: size }} />;
         },
       })}
       tabBarOptions={{
@@ -40,22 +40,22 @@ function BottomTab() {
       <Tab.Screen
         name="Home"
         component={Home}
-        options={{ headerShown: false }}
+        options={{ headerShown: false,tabBarLabel: "" }}
       />
       <Tab.Screen
         name="Wishlist"
         component={Wishlist}
-        options={{ headerShown: false }}
+        options={{ headerShown: false, tabBarLabel: "" }}
       />
       <Tab.Screen
         name="Profile"
         component={Profile}
-        options={{ headerShown: false }}
+        options={{ headerShown: false,tabBarLabel: "" }}
       />
       <Tab.Screen
         name="Cart"
         component={Cart}
-        options={{ headerShown: false }}
+        options={{ headerShown: false,tabBarLabel: "", }}
       />
     </Tab.Navigator>
   );
@@ -69,7 +69,6 @@ export default function Appnav() {
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="BottomTab" component={BottomTab} />
       <Stack.Screen name="Categories" component={Categories} />
-
     </Stack.Navigator>
   );
 }

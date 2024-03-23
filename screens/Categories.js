@@ -20,8 +20,8 @@ const Categories = ({ route }) => {
           categories: categoryKey, 
         },
         headers: {
-          'X-RapidAPI-Key': 'c6d16c1501msh24e6f3310e36978p1c6398jsn1529ed171c5b',
-          'X-RapidAPI-Host': 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com',
+          'X-RapidAPI-Key': 'e982043e32mshded2985d7f3ed00p1be005jsn47d9ba0e95c0',
+          'X-RapidAPI-Host': 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
         },
       };
 
@@ -64,6 +64,7 @@ const Categories = ({ route }) => {
           return rows;
         }, [])}
       </ScrollView>
+     
     </View>
   );
 };
