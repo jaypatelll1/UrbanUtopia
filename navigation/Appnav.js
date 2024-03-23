@@ -31,6 +31,13 @@ function BottomTab() {
 
           return <Image source={iconImage} style={{ width: size, height: size }} />;
         },
+        tabBarStyle:{
+          backgroundColor:"#F2F2F2",
+          borderColor:"#F4F4F4",
+          borderWidth:0,
+          borderBlockColor:"#F3F3F3",
+          elevation:0
+        }
       })}
       tabBarOptions={{
         activeTintColor: "black",
@@ -40,22 +47,22 @@ function BottomTab() {
       <Tab.Screen
         name="Home"
         component={Home}
-        options={{ headerShown: false,tabBarLabel: "" }}
+        options={{ headerShown: false,tabBarLabel: "",tabBarIconStyle:{marginTop:15} }}
       />
       <Tab.Screen
         name="Wishlist"
         component={Wishlist}
-        options={{ headerShown: false, tabBarLabel: "" }}
+        options={{ headerShown: false, tabBarLabel: "",tabBarIconStyle:{marginTop:15} }}
       />
       <Tab.Screen
         name="Profile"
         component={Profile}
-        options={{ headerShown: false,tabBarLabel: "" }}
+        options={{ headerShown: false,tabBarLabel: "",tabBarIconStyle:{marginTop:13} }}
       />
       <Tab.Screen
         name="Cart"
         component={Cart}
-        options={{ headerShown: false,tabBarLabel: "", }}
+        options={{ headerShown: false,tabBarLabel: "",tabBarIconStyle:{marginTop:15} }}
       />
     </Tab.Navigator>
   );
