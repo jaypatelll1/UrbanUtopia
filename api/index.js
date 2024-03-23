@@ -117,7 +117,12 @@ app.post('/login',async(req,res)=>{
         }
         //generate token
         const token=jwt.sign({userId:user._id},secretKey);
-        res.status(200).json({token});
+        const u={
+            name:user.name,
+            email:user.email
+        }
+        console.log(u);
+        res.status(200).json({token,u});
     }
     catch(err){
         res.status(500).json({message:"Login Failed"})
