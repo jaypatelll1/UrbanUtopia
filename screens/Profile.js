@@ -1,12 +1,25 @@
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Profile() {
+  const [name,setName]=useState([]);
+  const [email,setEmail]=useState([]);
+  const fetch=async()=>{
+    const username=await AsyncStorage.getItem("name");
+    const email=await AsyncStorage.getItem("email");
+    setName(username);
+    setEmail(email);
+  }
+  fetch();
+
+  
   return (
     <View>
        <View style={styles.topC}>
-        <Text style={styles.topT}>Profile</Text>
+        <Text style={styles.topT}>{name}</Text>
+        <Text style={styles.topT}>{email}</Text>
       </View>
     </View>
   )

@@ -40,9 +40,14 @@ export default function Login() {
     axios
       .post("https://urbanutopia-5emc.onrender.com/login", user)
       .then((response) => {
-        console.log(response);
+        console.log("Response::::",response.data)
         const token = response.data.token;
+        const userrr=response.data.u;
+        console.log(userrr);
+        AsyncStorage.setItem("email",userrr.email);
+        AsyncStorage.setItem("name",userrr.name);
         AsyncStorage.setItem("authToken", token);
+        
         navigation.replace("BottomTab");
         setEmail("");
         setPassword("");
