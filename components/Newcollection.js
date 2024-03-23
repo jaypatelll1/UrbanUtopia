@@ -6,7 +6,7 @@ const Newcollection = ({ image, name, price }) => {
     <View style={styles.container}>
       <Image source={{ uri: image }} style={styles.image} />
       <Text style={styles.name}>{name}</Text>
-      <Text style={styles.price}>{price}</Text>
+      <Text style={styles.price}>Rs.{price}</Text>
     </View>
   );
 };

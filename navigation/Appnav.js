@@ -8,6 +8,7 @@ import Login from "../screens/Login";
 import Register from "../screens/Register";
 import Cart from "../screens/Cart";
 import { Ionicons } from "@expo/vector-icons";
+import Categories from "../screens/Categories";
 
 const Tab = createBottomTabNavigator();
 
@@ -67,6 +68,8 @@ export default function Appnav() {
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="BottomTab" component={BottomTab} />
+      <Stack.Screen name="Categories" component={Categories} />
+
     </Stack.Navigator>
   );
 }

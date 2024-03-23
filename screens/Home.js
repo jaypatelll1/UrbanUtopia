@@ -5,7 +5,6 @@ import {
   TextInput,
   ScrollView,
   Image,
-  Touchable,
   TouchableOpacity,
 } from "react-native";
 import React, { useState, useEffect } from "react";
@@ -20,12 +19,27 @@ const images1 = [
   require("../assets/3.jpg"),
 ];
 const items = [
-  { id: 1, image: require("../assets/11.jpg"), text: "Men" },
-  { id: 2, image: require("../assets/22.jpg"), text: "Woman" },
-  { id: 3, image: require("../assets/33.jpg"), text: "Baby" },
-  { id: 4, image: require("../assets/44.jpg"), text: "Kids" },
-  { id: 5, image: require("../assets/55.jpg"), text: "Sport" },
-  { id: 6, image: require("../assets/55.jpg"), text: "Sale" },
+  { id: 1, image: require("../assets/11.jpg"), text: "Men", key: "men_all" },
+  {
+    id: 2,
+    image: require("../assets/22.jpg"),
+    text: "Woman",
+    key: "ladies_all",
+  },
+  {
+    id: 3,
+    image: require("../assets/33.jpg"),
+    text: "Baby",
+    key: "kids_newbornbaby_viewall",
+  },
+  { id: 4, image: require("../assets/44.jpg"), text: "Kids", key: "kids_all" },
+  {
+    id: 5,
+    image: require("../assets/55.jpg"),
+    text: "Sport",
+    key: "sportswear",
+  },
+  { id: 6, image: require("../assets/55.jpg"), text: "Home", key: "home_all" },
 ];
 
 export default function Home({ navigation }) {
@@ -38,10 +52,10 @@ export default function Home({ navigation }) {
         method: "GET",
         url: "https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/products/list",
         params: {
-          country: "us",
+          country: "in",
           lang: "en",
           currentpage: "0",
-          pagesize: "30",
+          pagesize: "16",
           categories: "home_all",
         },
         headers: {
@@ -68,10 +82,10 @@ export default function Home({ navigation }) {
         method: "GET",
         url: "https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com/products/list",
         params: {
-          country: "us",
+          country: "in",
           lang: "en",
           currentpage: "0",
-          pagesize: "30",
+          pagesize: "6",
           categories: "men_all",
           concepts: "H&M MAN",
         },
@@ -93,10 +107,11 @@ export default function Home({ navigation }) {
   }, []);
   return (
     <View>
-      <View style={styles.topC}>
-        <Text style={styles.topT}>Home</Text>
-      </View>
       <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.topC}>
+          <Text style={styles.topT}>Home</Text>
+        </View>
+
         <View style={styles.Container}>
           <View style={styles.searchContainer}>
             <TextInput style={styles.searchInput} placeholder="Search" />
@@ -120,8 +135,13 @@ export default function Home({ navigation }) {
             showsHorizontalScrollIndicator={false}
           >
             {items.map((item) => (
-              <TouchableOpacity>
-                <View key={item.id} style={styles.itemContainer}>
+              <TouchableOpacity
+                key={item.id}
+                onPress={() =>
+                  navigation.navigate("Categories", { categoryKey: item.key })
+                }
+              >
+                <View style={styles.itemContainer}>
                   <View style={styles.imageContainer}>
                     <Image source={item.image} style={styles.image} />
                   </View>
