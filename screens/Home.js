@@ -13,6 +13,8 @@ import { Icon } from "react-native-vector-icons/FontAwesome";
 import { SliderBox } from "react-native-image-slider-box";
 import Trendingcard from "../components/Trendingcard";
 import Newcollection from "../components/Newcollection";
+import { useNavigation } from "@react-navigation/native";
+
 const images1 = [
   require("../assets/1.jpg"),
   require("../assets/2.jpg"),
@@ -59,14 +61,14 @@ export default function Home({ navigation }) {
           categories: "home_all",
         },
         headers: {
-          'X-RapidAPI-Key': 'e982043e32mshded2985d7f3ed00p1be005jsn47d9ba0e95c0',
-          'X-RapidAPI-Host': 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
+          "X-RapidAPI-Key":
+            "e982043e32mshded2985d7f3ed00p1be005jsn47d9ba0e95c0",
+          "X-RapidAPI-Host": "apidojo-hm-hennes-mauritz-v1.p.rapidapi.com",
         },
       };
 
       try {
         const response = await axios.request(options);
-        console.log(response.data);
         setProducts(response.data.results);
       } catch (error) {
         console.error(error);
@@ -89,8 +91,9 @@ export default function Home({ navigation }) {
           concepts: "H&M MAN",
         },
         headers: {
-          'X-RapidAPI-Key': 'e982043e32mshded2985d7f3ed00p1be005jsn47d9ba0e95c0',
-    'X-RapidAPI-Host': 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
+          "X-RapidAPI-Key":
+            "e982043e32mshded2985d7f3ed00p1be005jsn47d9ba0e95c0",
+          "X-RapidAPI-Host": "apidojo-hm-hennes-mauritz-v1.p.rapidapi.com",
         },
       };
 
@@ -107,12 +110,16 @@ export default function Home({ navigation }) {
     <View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.topC}>
-          <Image style={styles.topI} source={require("../assets/home-icon.png")} />
-          <Image style={styles.topI2} source={require("../assets/home-search.png")} />
-          
+          <Image
+            style={styles.topI}
+            source={require("../assets/home-icon.png")}
+          />
+          <Image
+            style={styles.topI2}
+            source={require("../assets/home-search.png")}
+          />
         </View>
 
-       
         <SliderBox
           images={images1}
           style={styles.carousel}
@@ -157,7 +164,14 @@ export default function Home({ navigation }) {
         </View>
         <ScrollView horizontal={true}>
           {Trending1.map((item) => (
-            <TouchableOpacity key={item.id}>
+            <TouchableOpacity
+              key={item.id}
+              onPress={() => {
+                navigation.navigate("Info",{
+                  item:item
+                });
+              }}
+            >
               <Trendingcard
                 image={item.images[0].baseUrl}
                 name={item.name}
@@ -179,7 +193,11 @@ export default function Home({ navigation }) {
               if (index % 2 === 0) {
                 rows.push(
                   <View style={styles.row} key={index}>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => {
+                        navigation.navigate("Info");
+                      }}
+                    >
                       <Newcollection
                         image={products[index].images[0].baseUrl}
                         name={products[index].name}
@@ -187,7 +205,11 @@ export default function Home({ navigation }) {
                       />
                     </TouchableOpacity>
                     {index + 1 < products.length && (
-                      <TouchableOpacity>
+                      <TouchableOpacity
+                        onPress={() => {
+                          navigation.navigate("Info");
+                        }}
+                      >
                         <Newcollection
                           image={products[index + 1].images[0].baseUrl}
                           name={products[index + 1].name}
@@ -208,16 +230,19 @@ export default function Home({ navigation }) {
 }
 const styles = StyleSheet.create({
   topC: {
-    height: 60,flexDirection:"row",justifyContent:"space-between"
+    height: 60,
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   topI: {
     height: 32,
-    width:202,
+    width: 202,
     marginTop: 40,
     marginLeft: "4%",
-  },topI2:{
+  },
+  topI2: {
     height: 20,
-    width:20,
+    width: 20,
     marginTop: 45,
     marginRight: "4%",
   },

@@ -9,6 +9,7 @@ import Login from "../screens/Login";
 import Register from "../screens/Register";
 import Cart from "../screens/Cart";
 import Categories from "../screens/Categories";
+import ProductInfo from "../screens/ProductInfo";
 
 const Tab = createBottomTabNavigator();
 
@@ -76,6 +77,7 @@ export default function Appnav() {
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="BottomTab" component={BottomTab} />
       <Stack.Screen name="Categories" component={Categories} />
+      <Stack.Screen name="Info" component={ProductInfo}/>
     </Stack.Navigator>
   );
 }
