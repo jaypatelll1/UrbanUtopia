@@ -7,7 +7,7 @@ const cors = require("cors");
 const app = express();
 
 
-const PORT= process.env.PORT || 8000;
+const port = 8000;
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -28,8 +28,8 @@ mongoose.connect("mongodb+srv://urbanutopia:urbanutopia@cluster0.tbg46b5.mongodb
     console.log("Error ", err);
 })
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`)
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`)
 })
 const sendVerificationEmail=async(email,verificationToken)=>{
     const transporter=nodemailer.createTransport({
