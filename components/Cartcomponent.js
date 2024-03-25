@@ -1,38 +1,51 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { removeFromCart,decrementQuantity,incrementQuantity } from "../redux/CartReducer";
 
-const Cartcomponent = () => {
+export const CartComponent = ({item}) => {
+  const dispatch = useDispatch();
+  const removeItemFromCart = (item) => {
+    dispatch(removeFromCart(item));
+  };
+  const dec=(item)=>{
+    dispatch(decrementQuantity(item));
+  }
+  const inc=(item)=>{
+    dispatch(incrementQuantity(item));
+  }
   return (
-    <View>
+
       <View style={styles.main}>
+      
         <View style={styles.imagv}>
-          <Image source={require("../assets/test.png")} />
+          <Image source={{ uri: item.images[0].baseUrl }} style={{width:100,height:100}} />
         </View>
         <View style={{}}>
           <View style={styles.textv}>
             <View>
-              <Text style={styles.name}>Regular Fit Lace Resort Shirt</Text>
+              <Text style={styles.name}>{item.name}</Text>
             </View>
             <View>
-              <Text style={styles.price}>Rs.2500</Text>
+              <Text style={styles.price}>{item.whitePrice.value}</Text>
             </View>
 
             <View style={styles.buttons}>
               <View style={styles.buttonL}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => dec(item)}>
                   <Text style={{ color: "#fff" }}>–</Text>
                 </TouchableOpacity>
               </View>
               <View style={styles.number}>
-                <Text>1</Text>
+                <Text>{item.quantity}</Text>
               </View>
               <View style={styles.buttonR}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>inc(item)}>
                   <Text style={{ color: "#fff" }}>+</Text>
                 </TouchableOpacity>
               </View>
               <View>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => removeItemFromCart(item)}>
                   <View style={styles.removebtn}>
                     <Text>Remove</Text>
                   </View>
@@ -42,11 +55,11 @@ const Cartcomponent = () => {
           </View>
         </View>
       </View>
-    </View>
+    
   );
 };
 
-export default Cartcomponent;
+export default CartComponent;
 
 const styles = StyleSheet.create({
   main: {
@@ -59,6 +72,8 @@ const styles = StyleSheet.create({
   imagv: {
     justifyContent: "center",
     alignItems: "center",
+    width:100,
+    height:100
   },
   name: {
     fontWeight: "bold",

@@ -8,14 +8,26 @@ import {
 } from "react-native";
 import React from "react";
 import { useState } from "react";
-const ProductInfo = ({route }) => {
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../redux/CartReducer";
+
+const ProductInfo = ({ route }) => {
   const { item } = route.params;
   const [selectedSize, setSelectedSize] = useState(null);
+  const [addedToCart, setAddedToCart] = useState(false);
   const handleSizePress = (size) => {
     setSelectedSize(size);
   };
-  console.log(item);
-
+  const dispatch = useDispatch();
+  const addItemToCart = (item) => {
+    setAddedToCart(true);
+    dispatch(addToCart(item));
+    setTimeout(() => {
+      setAddedToCart(false);
+    }, 5000);
+  };
+  cart = useSelector((state) => state.cart.cart);
+  
   return (
     <ScrollView style={{ marginTop: 45, flex: 1 }} horizontal={false}>
       <View style={styles.topIconView}>
@@ -31,8 +43,10 @@ const ProductInfo = ({route }) => {
       </View>
       <View style={{ backgroundColor: "rgba(238,230,219,0.8)" }}>
         <View style={styles.prodImgView}>
-          <Image source={{ uri: item.images[0].baseUrl }} style={styles.prodImg} />
-          
+          <Image
+            source={{ uri: item.images[0].baseUrl }}
+            style={styles.prodImg}
+          />
         </View>
         <View style={styles.prodDetails}>
           <View>
@@ -108,7 +122,9 @@ const ProductInfo = ({route }) => {
               >
                 Color:
               </Text>
-              <Text style={{ fontSize: 18 }}>{item.defaultArticle.color.text}</Text>
+              <Text style={{ fontSize: 18 }}>
+                {item.defaultArticle.color.text}
+              </Text>
             </View>
             <View style={{ marginTop: "3%" }}>
               <Text
@@ -183,14 +199,14 @@ const ProductInfo = ({route }) => {
               <View
                 style={{
                   marginTop: "4%",
-                  borderTopColor:"rgba(200,200,211,0.2)",
-                  borderTopWidth:2,
-                  flex:1,
-                  flexDirection:"row",
-                  justifyContent:"space-around"
+                  borderTopColor: "rgba(200,200,211,0.2)",
+                  borderTopWidth: 2,
+                  flex: 1,
+                  flexDirection: "row",
+                  justifyContent: "space-around",
                 }}
               >
-                <View style={{marginTop:"2%"}}>
+                <View style={{ marginTop: "2%" }}>
                   <Text
                     style={{
                       color: "#9B9B9B",
@@ -208,12 +224,48 @@ const ProductInfo = ({route }) => {
                       fontWeight: "900",
                     }}
                   >
-                   {item.whitePrice.value}
+                    {item.whitePrice.value}
                   </Text>
                 </View>
-                <TouchableOpacity style={{width:170,height:50,backgroundColor:"#714E38",marginTop:"3%",borderRadius:40,justifyContent:"center",alignItems:"center",flexDirection:"row"}}>
-                  <Image source={require("../assets/cart.png")}/>
-                  <Text style={{color:"#fff",fontSize:18,fontWeight:"600",marginLeft:"5%"}}>Add to cart</Text>
+                <TouchableOpacity
+                  onPress={() => addItemToCart(item)}
+                  style={{
+                    width: 170,
+                    height: 50,
+                    backgroundColor: "#714E38",
+                    marginTop: "3%",
+                    borderRadius: 40,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "row",
+                  }}
+                >
+                  {addedToCart ? (
+                    <Text
+                      style={{
+                        color: "#fff",
+                        fontSize: 18,
+                        fontWeight: "600",
+                        marginLeft: "5%",
+                      }}
+                    >
+                      Added To Cart
+                    </Text>
+                  ) : (
+                    <>
+                      <Image source={require("../assets/cart.png")} />
+                      <Text
+                        style={{
+                          color: "#fff",
+                          fontSize: 18,
+                          fontWeight: "600",
+                          marginLeft: "5%",
+                        }}
+                      >
+                        Add to cart
+                      </Text>
+                    </>
+                  )}
                 </TouchableOpacity>
               </View>
             </View>

@@ -1,18 +1,36 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import Cartcomponent from "../components/Cartcomponent";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+} from "react-native";
+import CartComponent from "../components/CartComponent";
+import { useSelector } from "react-redux";
 
 export default function Cart() {
+  const cart = useSelector((state) => state.cart.cart);
+  const total = cart
+    ?.map((item) => item.whitePrice.value * item.quantity)
+    .reduce((curr, prev) => curr + prev, 0);
+  console.log(total);
   return (
     <View>
       <Text style={styles.topT}>Cart</Text>
       <View style={styles.compo}>
-        <Cartcomponent />
+        {cart?.map((item) => (
+          <CartComponent
+            item={item}
+          />
+        ))}
       </View>
+
       <View>
         <View style={styles.carttotal}>
           <Text style={{ fontSize: 17, fontWeight: "bold" }}>Cart Total</Text>
-          <Text style={{ fontSize: 22, fontWeight: "bold" }}>RS.3500</Text>
+          <Text style={{ fontSize: 22, fontWeight: "bold" }}>Rs. {total}</Text>
         </View>
         <View style={styles.addressM}>
           <Text style={{ fontSize: 17, fontWeight: "bold" }}>
@@ -80,7 +98,7 @@ const styles = StyleSheet.create({
   },
   addressM: {
     margin: "5%",
-    marginTop:-4-5,
+    marginTop: -4 - 5,
     flexDirection: "row",
     justifyContent: "space-between",
   },
@@ -88,7 +106,8 @@ const styles = StyleSheet.create({
     height: 40,
     width: 130,
     marginTop: 6,
-  },checkoutbtn:{
-    alignItems:"center"
-  }
+  },
+  checkoutbtn: {
+    alignItems: "center",
+  },
 });

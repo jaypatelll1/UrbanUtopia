@@ -15,6 +15,7 @@ import { SliderBox } from "react-native-image-slider-box";
 import Trendingcard from "../components/Trendingcard";
 import Newcollection from "../components/Newcollection";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
 
 const images1 = [
   require("../assets/1.jpg"),
@@ -108,6 +109,8 @@ export default function Home({ navigation }) {
     };
     fetchData();
   }, []);
+
+  
   return (
     <View>
       <ScrollView showsVerticalScrollIndicator={false}>
