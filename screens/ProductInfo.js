@@ -8,12 +8,14 @@ import {
 } from "react-native";
 import React from "react";
 import { useState } from "react";
-const ProductInfo = () => {
+const ProductInfo = ({route }) => {
+  const { item } = route.params;
   const [selectedSize, setSelectedSize] = useState(null);
   const handleSizePress = (size) => {
     setSelectedSize(size);
   };
-  console.log("Product");
+  console.log(item);
+
   return (
     <ScrollView style={{ marginTop: 45, flex: 1 }} horizontal={false}>
       <View style={styles.topIconView}>
@@ -29,7 +31,8 @@ const ProductInfo = () => {
       </View>
       <View style={{ backgroundColor: "rgba(238,230,219,0.8)" }}>
         <View style={styles.prodImgView}>
-          <Image source={require("../assets/pro.png")} style={styles.prodImg} />
+          <Image source={{ uri: item.images[0].baseUrl }} style={styles.prodImg} />
+          
         </View>
         <View style={styles.prodDetails}>
           <View>
@@ -45,7 +48,7 @@ const ProductInfo = () => {
               <Text
                 style={{ color: "#9B9B9B", fontSize: 15, fontWeight: "bold" }}
               >
-                Men's Shirt
+                {item.categoryName}
               </Text>
               <View
                 style={{
@@ -79,7 +82,7 @@ const ProductInfo = () => {
                   marginTop: "3%",
                 }}
               >
-                Regular Fit Lace resort shirt
+                {item.name}
               </Text>
             </View>
             <View>
@@ -96,17 +99,16 @@ const ProductInfo = () => {
               <Text
                 style={{ fontSize: 14, marginLeft: "8%", marginRight: "4%" }}
               >
-                Regular-fit shirt in lace with a resort collar, French front,
-                short sleeves and a straight-cut hem with a slit at each side.
+                {item.description}
               </Text>
             </View>
             <View style={{ flex: 1, flexDirection: "row", marginTop: "3%" }}>
               <Text
                 style={{ fontSize: 18, fontWeight: "600", marginLeft: "8%" }}
               >
-                Select Color:{" "}
+                Color:
               </Text>
-              <Text style={{ fontSize: 18 }}>White</Text>
+              <Text style={{ fontSize: 18 }}>{item.defaultArticle.color.text}</Text>
             </View>
             <View style={{ marginTop: "3%" }}>
               <Text
@@ -206,7 +208,7 @@ const ProductInfo = () => {
                       fontWeight: "900",
                     }}
                   >
-                    ₹1499.00
+                   {item.whitePrice.value}
                   </Text>
                 </View>
                 <TouchableOpacity style={{width:170,height:50,backgroundColor:"#714E38",marginTop:"3%",borderRadius:40,justifyContent:"center",alignItems:"center",flexDirection:"row"}}>
@@ -247,10 +249,10 @@ const styles = StyleSheet.create({
     width: 355,
     marginRight: 150,
     height: 400,
-    marginTop: -10,
+    marginTop: 10,
   },
   prodImgView: {
-    height: 300,
+    height: 350,
     flex: 1,
     justifyContent: "center",
   },

@@ -6,6 +6,7 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
+  FlatList,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
@@ -70,6 +71,7 @@ export default function Home({ navigation }) {
       try {
         const response = await axios.request(options);
         setProducts(response.data.results);
+       
       } catch (error) {
         console.error(error);
       }
@@ -167,8 +169,9 @@ export default function Home({ navigation }) {
             <TouchableOpacity
               key={item.id}
               onPress={() => {
-                navigation.navigate("Info",{
-                  item:item
+                navigation.navigate("Info", {
+                  item: item,
+                  
                 });
               }}
             >
@@ -185,44 +188,27 @@ export default function Home({ navigation }) {
           <Text style={styles.mText}>New Collections</Text>
         </View>
         <View>
-          <ScrollView
-            contentContainerStyle={styles.scrollViewContent}
-            horizontal={false}
-          >
-            {products.reduce((rows, item, index) => {
-              if (index % 2 === 0) {
-                rows.push(
-                  <View style={styles.row} key={index}>
-                    <TouchableOpacity
-                      onPress={() => {
-                        navigation.navigate("Info");
-                      }}
-                    >
-                      <Newcollection
-                        image={products[index].images[0].baseUrl}
-                        name={products[index].name}
-                        price={products[index].price.value}
-                      />
-                    </TouchableOpacity>
-                    {index + 1 < products.length && (
-                      <TouchableOpacity
-                        onPress={() => {
-                          navigation.navigate("Info");
-                        }}
-                      >
-                        <Newcollection
-                          image={products[index + 1].images[0].baseUrl}
-                          name={products[index + 1].name}
-                          price={products[index + 1].price.value}
-                        />
-                      </TouchableOpacity>
-                    )}
-                  </View>
-                );
-              }
-              return rows;
-            }, [])}
-          </ScrollView>
+          <FlatList
+            data={products}
+            keyExtractor={(item, index) => `${item.id}_${index}`}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("Info", {
+                    item: item,
+                    
+                  });
+                }}
+              >
+                <Newcollection
+                  image={item.images[0].baseUrl}
+                  name={item.name}
+                  price={item.price.value}
+                />
+              </TouchableOpacity>
+            )}
+            numColumns={2}
+          />
         </View>
       </ScrollView>
     </View>
