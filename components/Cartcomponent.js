@@ -19,7 +19,7 @@ export const CartComponent = ({item}) => {
       <View style={styles.main}>
       
         <View style={styles.imagv}>
-          <Image source={{ uri: item.images[0].baseUrl }} style={{width:100,height:100}} />
+          <Image source={{ uri: item.images[0].baseUrl }} style={{width:80,height:102}} />
         </View>
         <View style={{}}>
           <View style={styles.textv}>
@@ -27,7 +27,7 @@ export const CartComponent = ({item}) => {
               <Text style={styles.name}>{item.name}</Text>
             </View>
             <View>
-              <Text style={styles.price}>{item.whitePrice.value}</Text>
+              <Text style={styles.price}>{item.whitePrice.value*item.quantity}</Text>
             </View>
 
             <View style={styles.buttons}>

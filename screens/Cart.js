@@ -19,13 +19,15 @@ export default function Cart() {
   return (
     <View>
       <Text style={styles.topT}>Cart</Text>
-      <View style={styles.compo}>
+      
         {cart?.map((item) => (
+          <View style={styles.compo}>
           <CartComponent
             item={item}
           />
+           </View>
         ))}
-      </View>
+     
 
       <View>
         <View style={styles.carttotal}>
@@ -82,6 +84,7 @@ const styles = StyleSheet.create({
   compo: {
     margin: 10,
     justifyContent: "space-between",
+    alignItems:"center"
   },
   topT: {
     marginTop: 40,

@@ -27,27 +27,18 @@ const ProductInfo = ({ route }) => {
     }, 5000);
   };
   cart = useSelector((state) => state.cart.cart);
-  
+
   return (
     <ScrollView style={{ marginTop: 45, flex: 1 }} horizontal={false}>
-      <View style={styles.topIconView}>
-        <View style={styles.iconView}>
-          <Image source={require("../assets/back.png")} style={styles.icon} />
-        </View>
-        <View style={styles.iconView}>
-          <Image
-            source={require("../assets/wishlist_active.png")}
-            style={styles.icon}
-          />
-        </View>
-      </View>
-      <View style={{ backgroundColor: "rgba(238,230,219,0.8)" }}>
-        <View style={styles.prodImgView}>
+     <View style={styles.prodImgView}>
           <Image
             source={{ uri: item.images[0].baseUrl }}
             style={styles.prodImg}
           />
         </View>
+
+      <View style={{ backgroundColor: "rgba(238,230,219,0.8)" }}>
+       
         <View style={styles.prodDetails}>
           <View>
             <View
@@ -292,7 +283,7 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 30,
   },
-  topIconView: {
+  topIconView: { 
     flexDirection: "row",
     justifyContent: "space-between",
     backgroundColor: "rgba(238,230,219,0.8)",

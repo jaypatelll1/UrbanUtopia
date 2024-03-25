@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { View,StatusBar,StyleSheet } from "react-native";
 import Appnav from "./navigation/Appnav";
 import Register from "./screens/Register";
 import Profile from "./screens/Profile";
@@ -14,9 +14,17 @@ LogBox.ignoreAllLogs(); //Ignore all log notifications
 export default function App() {
   return (
     <Provider store={store}>
+      <View style={styles.container}>
       <NavigationContainer>
         <Appnav />
       </NavigationContainer>
+      </View>
     </Provider>
   );
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: StatusBar.currentHeight,
+  },
+});

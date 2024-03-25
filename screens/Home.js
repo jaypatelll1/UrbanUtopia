@@ -72,7 +72,6 @@ export default function Home({ navigation }) {
       try {
         const response = await axios.request(options);
         setProducts(response.data.results);
-       
       } catch (error) {
         console.error(error);
       }
@@ -110,7 +109,6 @@ export default function Home({ navigation }) {
     fetchData();
   }, []);
 
-  
   return (
     <View>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -174,7 +172,6 @@ export default function Home({ navigation }) {
               onPress={() => {
                 navigation.navigate("Info", {
                   item: item,
-                  
                 });
               }}
             >
@@ -190,7 +187,7 @@ export default function Home({ navigation }) {
         <View style={styles.mTextView}>
           <Text style={styles.mText}>New Collections</Text>
         </View>
-        <View>
+        <View style={styles.newcollection}>
           <FlatList
             data={products}
             keyExtractor={(item, index) => `${item.id}_${index}`}
@@ -199,15 +196,16 @@ export default function Home({ navigation }) {
                 onPress={() => {
                   navigation.navigate("Info", {
                     item: item,
-                    
                   });
                 }}
               >
-                <Newcollection
-                  image={item.images[0].baseUrl}
-                  name={item.name}
-                  price={item.price.value}
-                />
+               
+                  <Newcollection
+                    image={item.images[0].baseUrl}
+                    name={item.name}
+                    price={item.price.value}
+                  />
+              
               </TouchableOpacity>
             )}
             numColumns={2}
@@ -226,13 +224,13 @@ const styles = StyleSheet.create({
   topI: {
     height: 32,
     width: 202,
-    marginTop: 40,
+    marginTop: 20,
     marginLeft: "4%",
   },
   topI2: {
     height: 20,
     width: 20,
-    marginTop: 45,
+    marginTop: 25,
     marginRight: "4%",
   },
   carousel: {
@@ -240,7 +238,7 @@ const styles = StyleSheet.create({
     height: 140,
     width: "90%",
     marginLeft: "5%",
-    marginTop: 30,
+    marginTop: 10,
   },
   mTextView: {
     flexDirection: "row",
@@ -282,5 +280,9 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 }, // Shadow offset
     shadowOpacity: 0.3, // Shadow opacity
     shadowRadius: 4, // Shadow radius
+  },
+  newcollection: {
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
