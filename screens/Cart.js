@@ -1,27 +1,94 @@
-
-import React from 'react'
-import { View, Text, StyleSheet, } from "react-native";
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import Cartcomponent from "../components/Cartcomponent";
 
 export default function Cart() {
   return (
     <View>
-       <View style={styles.topC}>
-        <Text style={styles.topT}>Cart</Text>
+      <Text style={styles.topT}>Cart</Text>
+      <View style={styles.compo}>
+        <Cartcomponent />
+      </View>
+      <View>
+        <View style={styles.carttotal}>
+          <Text style={{ fontSize: 17, fontWeight: "bold" }}>Cart Total</Text>
+          <Text style={{ fontSize: 22, fontWeight: "bold" }}>RS.3500</Text>
+        </View>
+        <View style={styles.addressM}>
+          <Text style={{ fontSize: 17, fontWeight: "bold" }}>
+            Delivery Address:
+          </Text>
+          <View style={styles.address}>
+            <Text style={{ fontSize: 13, color: "#646464" }}>
+              Daulat Nagar, Borivali east, Mumbai-400066{" "}
+            </Text>
+          </View>
+        </View>
+        <View style={styles.checkoutbtn}>
+          <TouchableOpacity
+            style={{
+              width: 338,
+              height: 47,
+              backgroundColor: "#6D5038",
+              marginTop: "3%",
+              borderRadius: 8,
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "row",
+            }}
+          >
+            <Image source={require("../assets/cart.png")} />
+            <Text
+              style={{
+                color: "#fff",
+                fontSize: 18,
+                fontWeight: "600",
+                marginLeft: "5%",
+              }}
+            >
+              Checkout
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
-  )
+  );
 }
 const styles = StyleSheet.create({
-    topC: {
-      backgroundColor: "#0F52BA",
-      height: 120,
-      borderBottomLeftRadius: 48,
-      borderBottomRightRadius: 48,
-    },
-    topT: {
-      marginTop: 40,
-      marginLeft: "8%",
-      fontWeight: "bold",
-      fontSize: 35,
-      color: "#fff",
-    },})
+  topC: {
+    backgroundColor: "#0F52BA",
+    height: 120,
+    borderBottomLeftRadius: 48,
+    borderBottomRightRadius: 48,
+  },
+  compo: {
+    margin: 10,
+    justifyContent: "space-between",
+  },
+  topT: {
+    marginTop: 40,
+    marginLeft: "8%",
+    fontWeight: "bold",
+    fontSize: 35,
+    color: "#fff",
+  },
+  carttotal: {
+    margin: "5%",
+    marginTop: 87,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  addressM: {
+    margin: "5%",
+    marginTop:-4-5,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  address: {
+    height: 40,
+    width: 130,
+    marginTop: 6,
+  },checkoutbtn:{
+    alignItems:"center"
+  }
+});
