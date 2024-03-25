@@ -15,18 +15,18 @@ export const CartSlice=createSlice({
             }
         },
         removeFromCart:(state,action)=>{
-            const removeItem=state.cart.filter((item)=>item.id!==action.payload.id);
+            const removeItem=state.cart.filter((item)=>item.code!==action.payload.code);
             state.cart=removeItem;
         },
         incrementQuantity:(state,action)=>{
-            const itemPresent=state.cart.find((item)=>item.id===action.payload.id);
+            const itemPresent=state.cart.find((item)=>item.code===action.payload.code);
             itemPresent.quantity++;
         },
         decrementQuantity:(state,action)=>{
-            const itemPresent=state.cart.find((item)=>item.id===action.payload.id);
+            const itemPresent=state.cart.find((item)=>item.code===action.payload.code);
             if(itemPresent.quantity===1){
                 itemPresent.quantity=0;
-                const removeItem=state.cart.filter((item)=>item.id!==action.payload.id);
+                const removeItem=state.cart.filter((item)=>item.code!==action.payload.code);
                 state.cart=removeItem;
             }
             else{
