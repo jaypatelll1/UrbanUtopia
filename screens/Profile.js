@@ -49,7 +49,7 @@ export default function Profile({ navigation }) {
               <Text style={styles.buttonText}>My Orders</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>{navigation.navigate("PaymentMethods");}}>
             <View style={styles.button}>
               <Icon1
                 name="wallet"
@@ -62,7 +62,7 @@ export default function Profile({ navigation }) {
           </TouchableOpacity>
         </View>
         <View style={styles.buttoncont}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>{navigation.navigate("Delivery");}}>
             <View style={styles.button}>
               <Icon
                 name="truck"

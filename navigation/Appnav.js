@@ -11,6 +11,8 @@ import Cart from "../screens/Cart";
 import Categories from "../screens/Categories";
 import ProductInfo from "../screens/ProductInfo";
 import Order from "../screens/Order";
+import Delivery from "../screens/Delivery";
+import PaymentMethod from "../screens/PaymentMethod";
 
 const Tab = createBottomTabNavigator();
 
@@ -80,6 +82,9 @@ export default function Appnav() {
       <Stack.Screen name="Categories" component={Categories} />
       <Stack.Screen name="Info" component={ProductInfo}/>
       <Stack.Screen name="Order" component={Order}/>
+      <Stack.Screen name="Delivery" component={Delivery}/>
+      <Stack.Screen name="PaymentMethods" component={PaymentMethod}/>
+
     </Stack.Navigator>
   );
 }
