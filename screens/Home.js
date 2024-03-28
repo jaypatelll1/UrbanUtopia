@@ -62,10 +62,9 @@ export default function Home({ navigation }) {
           categories: "home_all",
         },
         headers: {
-          "X-RapidAPI-Key":
-            "e982043e32mshded2985d7f3ed00p1be005jsn47d9ba0e95c0",
-          "X-RapidAPI-Host": "apidojo-hm-hennes-mauritz-v1.p.rapidapi.com",
-        },
+          'X-RapidAPI-Key': '4c64a9a91dmsh6b5e902545fd0c2p178100jsn2167c56e0031',
+          'X-RapidAPI-Host': 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
+        }
       };
 
       try {
@@ -92,10 +91,9 @@ export default function Home({ navigation }) {
           concepts: "H&M MAN",
         },
         headers: {
-          "X-RapidAPI-Key":
-            "e982043e32mshded2985d7f3ed00p1be005jsn47d9ba0e95c0",
-          "X-RapidAPI-Host": "apidojo-hm-hennes-mauritz-v1.p.rapidapi.com",
-        },
+          'X-RapidAPI-Key': '4c64a9a91dmsh6b5e902545fd0c2p178100jsn2167c56e0031',
+          'X-RapidAPI-Host': 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
+        }
       };
 
       try {
