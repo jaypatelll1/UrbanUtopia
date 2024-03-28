@@ -27,12 +27,7 @@ const Delivery = ({ navigation: { goBack } }) => {
       </View>
       <View>
         <Text style={styles.editText}>Edit Address</Text>
-        <View
-          style={{
-            borderBottomColor: "black",
-            borderBottomWidth: 1.2,
-          }}
-        />
+        
         <View style={styles.inpView}>
           <Text style={styles.txts}>Name*</Text>
           <TextInput keyboardType="ascii-capable" style={styles.inp} />
@@ -76,13 +71,7 @@ const Delivery = ({ navigation: { goBack } }) => {
           <TextInput keyboardType="ascii-capable" style={styles.inp} />
         </View>
       </View>
-      <View
-        style={{
-          marginTop: "11%",
-          borderBottomColor: "black",
-          borderBottomWidth: 1.2,
-        }}
-      />
+      
       <View style={{alignItems:"center",marginTop:"7.5%",height:"100%"}}>
         <TouchableOpacity style={styles.btn}>
           <Text style={{ color: "white",fontSize:18 }}>Save Address</Text>
