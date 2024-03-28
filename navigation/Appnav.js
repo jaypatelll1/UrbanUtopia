@@ -10,6 +10,7 @@ import Register from "../screens/Register";
 import Cart from "../screens/Cart";
 import Categories from "../screens/Categories";
 import ProductInfo from "../screens/ProductInfo";
+import Order from "../screens/Order";
 
 const Tab = createBottomTabNavigator();
 
@@ -78,6 +79,7 @@ export default function Appnav() {
       <Stack.Screen name="BottomTab" component={BottomTab} />
       <Stack.Screen name="Categories" component={Categories} />
       <Stack.Screen name="Info" component={ProductInfo}/>
+      <Stack.Screen name="Order" component={Order}/>
     </Stack.Navigator>
   );
 }

@@ -38,7 +38,7 @@ export default function Profile({ navigation }) {
 
       <View>
         <View style={styles.buttoncont}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>{navigation.navigate("Order");}}>
             <View style={styles.button}>
               <Icon
                 name="box"
