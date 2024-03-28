@@ -41,7 +41,7 @@ export default function Register() {
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text
           style={{
-            marginTop: "20%",
+            marginTop: "10%",
             marginLeft: "5%",
             color: "#000000",
             fontWeight: "bold",

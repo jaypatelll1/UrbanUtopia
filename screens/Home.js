@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Icon } from "react-native-vector-icons/FontAwesome";
 import { SliderBox } from "react-native-image-slider-box";
 import Trendingcard from "../components/Trendingcard";
 import Newcollection from "../components/Newcollection";
