@@ -19,7 +19,7 @@ export default function Cart() {
   return (
     <View>
       <Text style={styles.topT}>Cart</Text>
-      
+        {cart.length===0?<View style={{alignItems:"center"}}><Image style={{width:"50%",height:"50%"}} source={require("../assets/cart_null.png")}/></View>:<></>}
         {cart?.map((item) => (
           <View style={styles.compo}>
           <CartComponent
