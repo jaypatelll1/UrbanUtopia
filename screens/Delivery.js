@@ -40,13 +40,7 @@ const Delivery = ({ navigation: { goBack } }) => {
             maxLength={10}
           />
         </View>
-        <View
-          style={{
-            marginTop: "11%",
-            borderBottomColor: "black",
-            borderBottomWidth: 1.2,
-          }}
-        />
+     
         <View
           style={[
             styles.inpView,
