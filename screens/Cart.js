@@ -28,8 +28,7 @@ export default function Cart() {
            </View>
         ))}
      
-
-      <View>
+      {cart.length!==0?<View>
         <View style={styles.carttotal}>
           <Text style={{ fontSize: 17, fontWeight: "bold" }}>Cart Total</Text>
           <Text style={{ fontSize: 22, fontWeight: "bold" }}>Rs. {total}</Text>
@@ -70,7 +69,8 @@ export default function Cart() {
             </Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </View>:<></>}
+      
     </View>
   );
 }
