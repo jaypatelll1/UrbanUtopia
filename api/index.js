@@ -128,3 +128,32 @@ app.post('/login',async(req,res)=>{
         res.status(500).json({message:"Login Failed"})
     }
 })
+
+app.post("/orders", async (req, res) => {
+  try {
+    const { userId, cartItems, totalPrice, shippingAddress, paymentMethode } =
+      req.body;
+    const user = await User.findById(userId);
+    if (!user) {
+      res.status(404).json({ message: "User not found" });
+    }
+    const products = cartItems.map((item) => ({
+      name: item?.name,
+      quantity: item?.price,
+      price: item?.price,
+      image: item?.image,
+    }));
+    const order = new Order({
+      user: userId,
+      products: products,
+      totalPrice: totalPrice,
+      shippingAddress: shippingAddress,
+      paymentMethod: paymentMethod,
+    });
+    await order.save();
+    res.status(200).json({message:"Order created successfully"});
+  } catch (err) {
+    console.log("Error creating orders", err);
+    res.status(500).json({ message: "Error creating orders" });
+  }
+});
