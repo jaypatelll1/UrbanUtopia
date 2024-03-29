@@ -118,6 +118,7 @@ app.post('/login',async(req,res)=>{
         //generate token
         const token=jwt.sign({userId:user._id},secretKey);
         const u={
+            userid:user._id,
             name:user.name,
             email:user.email
         }
