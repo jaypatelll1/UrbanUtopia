@@ -11,8 +11,8 @@ import {
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { SliderBox } from "react-native-image-slider-box";
-import Trendingcard from "../components/Trendingcard";
-import Newcollection from "../components/Newcollection";
+import Trendingcard from "../components/TrendingCard";
+import Newcollection from "../components/NewCollection";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 

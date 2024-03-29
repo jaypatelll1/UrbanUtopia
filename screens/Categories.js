@@ -1,7 +1,7 @@
 import { StyleSheet, View, ScrollView, TouchableOpacity } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Newcollection from '../components/Newcollection';
+import Newcollection from '../components/NewCollection';
 
 const Categories = ({ route }) => {
   const { categoryKey } = route.params;
