@@ -62,9 +62,10 @@ export default function Home({ navigation }) {
           categories: "home_all",
         },
         headers: {
-          'X-RapidAPI-Key': '4c64a9a91dmsh6b5e902545fd0c2p178100jsn2167c56e0031',
-          'X-RapidAPI-Host': 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
-        }
+          "X-RapidAPI-Key":
+            "4c64a9a91dmsh6b5e902545fd0c2p178100jsn2167c56e0031",
+          "X-RapidAPI-Host": "apidojo-hm-hennes-mauritz-v1.p.rapidapi.com",
+        },
       };
 
       try {
@@ -91,9 +92,10 @@ export default function Home({ navigation }) {
           concepts: "H&M MAN",
         },
         headers: {
-          'X-RapidAPI-Key': '4c64a9a91dmsh6b5e902545fd0c2p178100jsn2167c56e0031',
-          'X-RapidAPI-Host': 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
-        }
+          "X-RapidAPI-Key":
+            "4c64a9a91dmsh6b5e902545fd0c2p178100jsn2167c56e0031",
+          "X-RapidAPI-Host": "apidojo-hm-hennes-mauritz-v1.p.rapidapi.com",
+        },
       };
 
       try {
@@ -162,8 +164,14 @@ export default function Home({ navigation }) {
             </TouchableOpacity>
           </View>
         </View>
-        <ScrollView horizontal={true}>
-          {Trending1.map((item) => (
+        <FlatList
+          data={Trending1}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          keyExtractor={(item, index) =>
+            item.id ? item.id.toString() : index.toString()
+          }
+          renderItem={({ item }) => (
             <TouchableOpacity
               key={item.id}
               onPress={() => {
@@ -178,8 +186,8 @@ export default function Home({ navigation }) {
                 price={item.price.value}
               />
             </TouchableOpacity>
-          ))}
-        </ScrollView>
+          )}
+        />
 
         <View style={styles.mTextView}>
           <Text style={styles.mText}>New Collections</Text>
@@ -196,16 +204,18 @@ export default function Home({ navigation }) {
                   });
                 }}
               >
-               
-                  <Newcollection
-                    image={item.images[0].baseUrl}
-                    name={item.name}
-                    price={item.price.value}
-                  />
-              
+                <View style={styles.itemcont}>
+                <Newcollection
+                  image={item.images[0].baseUrl}
+                  name={item.name}
+                  price={item.price.value}
+                />
+                </View> 
               </TouchableOpacity>
             )}
             numColumns={2}
+            
+
           />
         </View>
       </ScrollView>
@@ -281,5 +291,8 @@ const styles = StyleSheet.create({
   newcollection: {
     justifyContent: "center",
     alignItems: "center",
-  },
+  },itemcont:{
+    padding:8
+  }
+
 });

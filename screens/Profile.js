@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Icon from "react-native-vector-icons/Feather";
 import Icon1 from "react-native-vector-icons/AntDesign";
@@ -15,7 +15,7 @@ export default function Profile({ navigation }) {
     setEmail(email);
   };
   fetch();
-  const handelLogout = async  () => {
+  const handelLogout = async () => {
     await AsyncStorage.removeItem("name");
     await AsyncStorage.removeItem("email");
     await AsyncStorage.removeItem("authToken");
@@ -23,6 +23,12 @@ export default function Profile({ navigation }) {
   };
   return (
     <View>
+      <View>
+        <Image
+          style={styles.topI}
+          source={require("../assets/home-icon.png")}
+        />
+      </View>
       <View style={styles.infocont}>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.email}>{email}</Text>
@@ -38,7 +44,11 @@ export default function Profile({ navigation }) {
 
       <View>
         <View style={styles.buttoncont}>
-          <TouchableOpacity onPress={()=>{navigation.navigate("Order");}}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Order");
+            }}
+          >
             <View style={styles.button}>
               <Icon
                 name="box"
@@ -49,7 +59,11 @@ export default function Profile({ navigation }) {
               <Text style={styles.buttonText}>My Orders</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={()=>{navigation.navigate("PaymentMethods");}}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("PaymentMethods");
+            }}
+          >
             <View style={styles.button}>
               <Icon1
                 name="wallet"
@@ -62,7 +76,11 @@ export default function Profile({ navigation }) {
           </TouchableOpacity>
         </View>
         <View style={styles.buttoncont}>
-          <TouchableOpacity onPress={()=>{navigation.navigate("Delivery");}}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Delivery");
+            }}
+          >
             <View style={styles.button}>
               <Icon
                 name="truck"
@@ -131,7 +149,7 @@ export default function Profile({ navigation }) {
         </View>
         <View style={styles.line}></View>
       </View>
-      <TouchableOpacity onPress={handelLogout}>
+      <TouchableOpacity onPress={handelLogout} style={styles.signoutcont}>
         <View style={styles.signout}>
           <Icon
             name="log-out"
@@ -146,6 +164,7 @@ export default function Profile({ navigation }) {
   );
 }
 const styles = StyleSheet.create({
+  topI: { height: 32, width: 202, marginTop: 20, marginLeft: "4%" },
   topC: {
     backgroundColor: "#0F52BA",
     height: 120,
@@ -153,7 +172,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 48,
   },
   infocont: {
-    marginTop: 40,
+    marginTop: 20,
     marginLeft: "20%",
   },
   name: {
@@ -231,6 +250,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 20,
-    marginLeft: "3.5%",
+  },
+  signoutcont: {
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

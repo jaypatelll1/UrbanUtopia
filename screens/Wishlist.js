@@ -1,27 +1,42 @@
-
-import React from 'react'
-import { View, Text, StyleSheet, } from "react-native";
+import React from "react";
+import { View, Text, StyleSheet,Image } from "react-native";
+import WishlistComponent from "../components/WishlistComponent";
 
 export default function Wishlist() {
   return (
     <View>
-       <View style={styles.topC}>
-        <Text style={styles.topT}>Wishlist</Text>
+    <View>
+      <View>
+      <Image
+            style={styles.topI}
+            source={require("../assets/home-icon.png")}
+          />
+      </View>
+      <View >
+        <Text style={styles.topT}>Fashion list</Text>
       </View>
     </View>
-  )
+    <View style={styles.compo}>
+      <WishlistComponent/>
+    </View>
+    </View>
+  );
 }
 const styles = StyleSheet.create({
-    topC: {
-      backgroundColor: "#0F52BA",
-      height: 120,
-      borderBottomLeftRadius: 48,
-      borderBottomRightRadius: 48,
-    },
-    topT: {
-      marginTop: 40,
-      marginLeft: "8%",
-      fontWeight: "bold",
-      fontSize: 35,
-      color: "#fff",
-    },})
+  
+  topI:{ height: 32,
+    width: 202,
+    marginTop: 20,
+    marginLeft: "4%"},
+  topT: {
+    marginTop: 20,
+    marginLeft: "8%",
+    fontWeight: "bold",
+    fontSize: 22,
+    
+  },compo: {
+    margin: 10,
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+});
