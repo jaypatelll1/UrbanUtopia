@@ -6,10 +6,46 @@ import {
   Image,
   TextInput,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import Icon from "react-native-vector-icons/Feather";
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useSelector } from "react-redux";
 
 const Delivery = ({ navigation: { goBack } }) => {
+  const [name, setName] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [city, setCity] = useState("");
+  const [pinCode, setPinCode] = useState("");
+  const [houseNo, setHouseNo] = useState("");
+  const [add, setAdd] = useState("");
+  const [street, setStreet] = useState("");
+  const cart=useSelector((state) => state.cart.cart);
+  const country="India";
+ 
+  const submit = () => {
+    let i = address.indexOf(",");
+    setHouseNo(add.slice(0, i));
+    setStreet(add.slice(i + 1).trim());
+    const userId=AsyncStorage.getItem("userId")
+    const address={
+      name,
+      mobile,
+      houseNo,
+      street,
+      city,
+      country,
+      postalCode
+    }
+  
+    axios.post("https://urbanutopia-5emc.onrender.com/addresses",{userId,address}).then((res)=>{
+      console.log("Address Saved Successfully")
+    }).catch((err)=>{
+      console.log(err);
+    })
+    goBack()
+  };
+
   return (
     <View>
       <View style={styles.topv}>
@@ -27,10 +63,14 @@ const Delivery = ({ navigation: { goBack } }) => {
       </View>
       <View>
         <Text style={styles.editText}>Edit Address</Text>
-        
+
         <View style={styles.inpView}>
           <Text style={styles.txts}>Name*</Text>
-          <TextInput keyboardType="ascii-capable" style={styles.inp} />
+          <TextInput
+            keyboardType="ascii-capable"
+            style={styles.inp}
+            onChangeText={setName}
+          />
         </View>
         <View style={styles.inpView}>
           <Text style={styles.txts}>Mobile*</Text>
@@ -38,9 +78,10 @@ const Delivery = ({ navigation: { goBack } }) => {
             keyboardType="phone-pad"
             style={styles.inp}
             maxLength={10}
+            onChangeText={setMobile}
           />
         </View>
-     
+
         <View
           style={[
             styles.inpView,
@@ -53,23 +94,34 @@ const Delivery = ({ navigation: { goBack } }) => {
               keyboardType="phone-pad"
               style={styles.inp}
               maxLength={6}
+              onChangeText={setPinCode}
             />
           </View>
           <View style={{ width: "40%", marginLeft: "5%" }}>
             <Text style={styles.txts}>City*</Text>
-            <TextInput keyboardType="ascii-capable" style={styles.inp} />
+            <TextInput
+              keyboardType="ascii-capable"
+              style={styles.inp}
+              onChangeText={setCity}
+            />
           </View>
         </View>
         <View style={styles.inpView}>
           <Text style={styles.txts}>Address*(House No, Building, Street)</Text>
-          <TextInput keyboardType="ascii-capable" style={styles.inp} />
+          <TextInput
+            keyboardType="ascii-capable"
+            style={styles.inp}
+            onChangeText={setAdd}
+          />
         </View>
       </View>
-      
-      <View style={{alignItems:"center",marginTop:"7.5%",height:"100%"}}>
-        <TouchableOpacity style={styles.btn}>
-          <Text style={{ color: "white",fontSize:18 }}>Save Address</Text>
-        </TouchableOpacity>
+
+      <View style={{ alignItems: "center", marginTop: "7.5%", height: "100%" }}>
+        
+          <TouchableOpacity style={styles.btn} onPress={submit}>
+            <Text style={{ color: "white", fontSize: 18 }}>Save Address</Text>
+          </TouchableOpacity>
+        
       </View>
     </View>
   );
@@ -107,7 +159,7 @@ const styles = StyleSheet.create({
     height: "4.5%",
     backgroundColor: "black",
     borderRadius: 12,
-    justifyContent:"center",
-    alignItems:"center"
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

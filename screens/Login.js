@@ -43,7 +43,7 @@ export default function Login() {
         
         const token = response.data.token;
         const userrr=response.data.u;
-        
+        AsyncStorage.setItem("userId",userrr.userid);
         AsyncStorage.setItem("email",userrr.email);
         AsyncStorage.setItem("name",userrr.name);
         AsyncStorage.setItem("authToken", token);

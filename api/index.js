@@ -158,3 +158,22 @@ app.post("/orders", async (req, res) => {
     res.status(500).json({ message: "Error creating orders" });
   }
 });
+
+
+app.post("/addresses",async(req,res)=>{
+  try{
+    const {userId,address}=req.body;
+    const user=await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    user.addresses.push(address);
+    await user.save();
+    res.status(200).json({message:"Address saved successfully"});
+
+  }
+  catch(error){
+    console.log("Error creating orders", err);
+    res.status(500).json({ message: "Error adding address" });
+  }
+})
