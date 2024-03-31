@@ -10,7 +10,7 @@ import {
 import CartComponent from "../components/CartComponent";
 import { useSelector } from "react-redux";
 
-export default function Cart({navigation}) {
+export default function Cart({ navigation }) {
   const cart = useSelector((state) => state.cart.cart);
   const total = cart
     ?.map((item) => item.whitePrice.value * item.quantity)
@@ -27,10 +27,14 @@ export default function Cart({navigation}) {
               source={require("../assets/cart_null.png")}
             />
           </View>
-          <TouchableOpacity onPress={()=>{navigation.navigate("Home")}}>
-          <View style={styles.shopnowbtn}>
-          <Text style={{color:"#fff",fontSize:20}}>Shop Now</Text>
-          </View>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Home");
+            }}
+          >
+            <View style={styles.shopnowbtn}>
+              <Text style={{ color: "#fff", fontSize: 20 }}>Shop Now</Text>
+            </View>
           </TouchableOpacity>
         </View>
       ) : (
@@ -55,9 +59,15 @@ export default function Cart({navigation}) {
               Delivery Address:
             </Text>
             <View style={styles.address}>
-              <Text style={{ fontSize: 13, color: "#646464" }}>
-                Daulat Nagar, Borivali east, Mumbai-400066{" "}
-              </Text>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("Delivery");
+                }}
+              >
+                <Text style={{ fontSize: 13, color: "#646464" }}>
+                  Daulat Nagar, Borivali east, Mumbai-400066{" "}
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
           <View style={styles.checkoutbtn}>
@@ -122,10 +132,10 @@ const styles = StyleSheet.create({
   shopnowbtn: {
     height: 57,
     width: 177,
-    backgroundColor:"#724D38",
-    borderRadius:30,
-    justifyContent:"center",
-    alignItems:"center"
+    backgroundColor: "#724D38",
+    borderRadius: 30,
+    justifyContent: "center",
+    alignItems: "center",
   },
   addressM: {
     margin: "5%",

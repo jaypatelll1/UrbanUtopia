@@ -1,13 +1,22 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image,TouchableOpacity } from "react-native";
 import React from "react";
+import { addToCart } from "../redux/CartReducer";
+import { useDispatch, useSelector } from "react-redux";
 
-const WishlistComponent = () => {
+const WishlistComponent = ({item}) => {
+  cart = useSelector((state) => state.cart.cart);
+
+  const dispatch = useDispatch();
+  const addItemToCart = (item) => {
+    dispatch(addToCart(item));
+  };
+
   return (
     <View>
       <View style={styles.main}>
         <View style={styles.imagv}>
           <Image
-            source={require("../assets/test.png")}
+            source={{ uri: item.images[0].baseUrl }}
             style={{ width: 120, height: 114 }}
           />
           {/* <Image source={{ uri: item.images[0].baseUrl }} style={{width:120,height:114}} /> */}
@@ -20,16 +29,16 @@ const WishlistComponent = () => {
         >
           <View style={styles.textv}>
             <View>
-              <Text style={styles.name}>Jay</Text>
+              <Text style={styles.name}>{item.name}</Text>
             </View>
             <View>
-              <Text style={styles.price}>Rs.500</Text>
+              <Text style={styles.price}>{item.whitePrice.value}</Text>
             </View>
-            <View style={styles.btncont}>
+            <TouchableOpacity style={styles.btncont} onPress={()=>   dispatch(addToCart(item))}>
               <View style={styles.atcbtn}>
                 <Text style={styles.btnt}>Add to cart</Text>
               </View>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
       </View>

@@ -10,6 +10,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/CartReducer";
+import { addToWishlist } from "../redux/WishlistReducer";
 
 const ProductInfo = ({ route }) => {
   const { item } = route.params;
@@ -25,6 +26,9 @@ const ProductInfo = ({ route }) => {
     setTimeout(() => {
       setAddedToCart(false);
     }, 5000);
+  };
+  const addItemToWishlist = (item) => {
+    dispatch(addToWishlist(item));
   };
   cart = useSelector((state) => state.cart.cart);
 
@@ -90,7 +94,7 @@ const ProductInfo = ({ route }) => {
                 {item.name}
               </Text>
             </View>
-            <View>
+            <TouchableOpacity  onPress={() => addItemToWishlist(item)}> 
               <Text
                 style={{
                   fontSize: 18,
@@ -99,14 +103,14 @@ const ProductInfo = ({ route }) => {
                   marginTop: "3%",
                 }}
               >
-                Product Details
+                Add to WishList    
               </Text>
               <Text
                 style={{ fontSize: 14, marginLeft: "8%", marginRight: "4%" }}
               >
                 {item.description}
               </Text>
-            </View>
+            </TouchableOpacity>
             <View style={{ flex: 1, flexDirection: "row", marginTop: "3%" }}>
               <Text
                 style={{ fontSize: 18, fontWeight: "600", marginLeft: "8%" }}

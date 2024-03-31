@@ -23,11 +23,12 @@ const Delivery = ({ navigation: { goBack } }) => {
   const cart=useSelector((state) => state.cart.cart);
   const country="India";
  
-  const submit = () => {
-    let i = address.indexOf(",");
+  const  submit = async() => {
+    let i = add.indexOf(",");
     setHouseNo(add.slice(0, i));
     setStreet(add.slice(i + 1).trim());
-    const userId=AsyncStorage.getItem("userId")
+    const userId=await AsyncStorage.getItem("userId");
+    console.log(userId);
     const address={
       name,
       mobile,
@@ -35,7 +36,7 @@ const Delivery = ({ navigation: { goBack } }) => {
       street,
       city,
       country,
-      postalCode
+      postalCode:pinCode
     }
   
     axios.post("https://urbanutopia-5emc.onrender.com/addresses",{userId,address}).then((res)=>{
