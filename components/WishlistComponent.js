@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View, Image,TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { addToCart } from "../redux/CartReducer";
 import { useDispatch, useSelector } from "react-redux";
+import { removeFromWishlist } from "../redux/WishlistReducer";
 
-const WishlistComponent = ({item}) => {
+const WishlistComponent = ({ item }) => {
   cart = useSelector((state) => state.cart.cart);
 
   const dispatch = useDispatch();
@@ -34,7 +35,13 @@ const WishlistComponent = ({item}) => {
             <View>
               <Text style={styles.price}>{item.whitePrice.value}</Text>
             </View>
-            <TouchableOpacity style={styles.btncont} onPress={()=>   dispatch(addToCart(item))}>
+            <TouchableOpacity
+              style={styles.btncont}
+              onPress={() => {
+                dispatch(addToCart(item));
+                dispatch(removeFromWishlist(item));
+              }}
+            >
               <View style={styles.atcbtn}>
                 <Text style={styles.btnt}>Add to cart</Text>
               </View>
@@ -75,20 +82,21 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16,
     color: "#626262",
-  },btncont:{
-    marginTop:10
+  },
+  btncont: {
+    marginTop: 10,
   },
   atcbtn: {
     height: 32,
     width: 100,
     backgroundColor: "#714E38",
     borderRadius: 8,
-    justifyContent:"center",
-    alignItems:"center"
+    justifyContent: "center",
+    alignItems: "center",
   },
-  btnt:{
-    fontsize:14,
-    fontWeight:"bold",
-    color:"#fff"
-  }
+  btnt: {
+    fontsize: 14,
+    fontWeight: "bold",
+    color: "#fff",
+  },
 });
