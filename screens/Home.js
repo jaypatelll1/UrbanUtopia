@@ -116,10 +116,6 @@ export default function Home({ navigation }) {
             style={styles.topI}
             source={require("../assets/home-icon.png")}
           />
-          <Image
-            style={styles.topI2}
-            source={require("../assets/home-search.png")}
-          />
         </View>
 
         <SliderBox
@@ -205,17 +201,15 @@ export default function Home({ navigation }) {
                 }}
               >
                 <View style={styles.itemcont}>
-                <Newcollection
-                  image={item.images[0].baseUrl}
-                  name={item.name}
-                  price={item.price.value}
-                />
-                </View> 
+                  <Newcollection
+                    image={item.images[0].baseUrl}
+                    name={item.name}
+                    price={item.price.value}
+                  />
+                </View>
               </TouchableOpacity>
             )}
             numColumns={2}
-            
-
           />
         </View>
       </ScrollView>
@@ -291,8 +285,8 @@ const styles = StyleSheet.create({
   newcollection: {
     justifyContent: "center",
     alignItems: "center",
-  },itemcont:{
-    padding:8
-  }
-
+  },
+  itemcont: {
+    padding: 8,
+  },
 });
