@@ -18,6 +18,12 @@ export default function Cart({ navigation }) {
   console.log(total);
   return (
     <View>
+       <View style={styles.topC1}>
+          <Image
+            style={styles.topI1}
+            source={require("../assets/home-icon.png")}
+          />
+        </View>
       {cart.length === 0 ? (
         <View style={styles.topC}>
           <Text style={styles.cartT}>Your shopping cart is empty</Text>
@@ -150,5 +156,16 @@ const styles = StyleSheet.create({
   },
   checkoutbtn: {
     alignItems: "center",
+  },
+  topC1: {
+    height: 60,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  topI1: {
+    height: 32,
+    width: 202,
+    marginTop: 20,
+    marginLeft: "4%",
   },
 });

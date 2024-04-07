@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
   },
   textv: {
     width: 200,
+    marginTop: 10,
   },
   price: {
     fontWeight: "bold",

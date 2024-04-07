@@ -11,6 +11,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/CartReducer";
 import { addToWishlist } from "../redux/WishlistReducer";
+import Icon from "react-native-vector-icons/Feather";
 
 const ProductInfo = ({ route }) => {
   const { item } = route.params;
@@ -33,16 +34,15 @@ const ProductInfo = ({ route }) => {
   cart = useSelector((state) => state.cart.cart);
 
   return (
-    <ScrollView style={{ marginTop: 45, flex: 1 }} horizontal={false}>
-     <View style={styles.prodImgView}>
-          <Image
-            source={{ uri: item.images[0].baseUrl }}
-            style={styles.prodImg}
-          />
-        </View>
+    <ScrollView style={{ flex: 1 }} horizontal={false}>
+      <View style={styles.prodImgView}>
+        <Image
+          source={{ uri: item.images[0].baseUrl }}
+          style={styles.prodImg}
+        />
+      </View>
 
       <View style={{ backgroundColor: "rgba(238,230,219,0.8)" }}>
-       
         <View style={styles.prodDetails}>
           <View>
             <View
@@ -94,33 +94,34 @@ const ProductInfo = ({ route }) => {
                 {item.name}
               </Text>
             </View>
-            <TouchableOpacity  onPress={() => addItemToWishlist(item)}> 
+            <View style={{ marginTop: "2%" }}>
+              <Text
+                style={{
+                  fontSize: 22,
+                  marginLeft: "8%",
+                  fontWeight: "900",
+                }}
+              >
+                ₹{item.whitePrice.value}.00
+              </Text>
+            </View>
+            <TouchableOpacity
+              onPress={() => addItemToWishlist(item)}
+              style={styles.wishbtn}
+            >
+              <Icon name="heart" color="white" size={22} />
               <Text
                 style={{
                   fontSize: 18,
-                  marginLeft: "8%",
-                  fontWeight: "600",
-                  marginTop: "3%",
+                  color: "#fff",
+                  fontWeight: "400",
+                  marginLeft: "2%",
                 }}
               >
-                Add to WishList    
-              </Text>
-              <Text
-                style={{ fontSize: 14, marginLeft: "8%", marginRight: "4%" }}
-              >
-                {item.description}
+                WishList
               </Text>
             </TouchableOpacity>
-            <View style={{ flex: 1, flexDirection: "row", marginTop: "3%" }}>
-              <Text
-                style={{ fontSize: 18, fontWeight: "600", marginLeft: "8%" }}
-              >
-                Color:
-              </Text>
-              <Text style={{ fontSize: 18 }}>
-                {item.defaultArticle.color.text}
-              </Text>
-            </View>
+
             <View style={{ marginTop: "3%" }}>
               <Text
                 style={{ fontSize: 18, fontWeight: "600", marginLeft: "8%" }}
@@ -191,6 +192,16 @@ const ProductInfo = ({ route }) => {
                   <Text style={styles.sizeText}>XXL</Text>
                 </TouchableOpacity>
               </View>
+              <View style={{ flex: 1, flexDirection: "row", marginTop: "3%" }}>
+                <Text
+                  style={{ fontSize: 18, fontWeight: "600", marginLeft: "8%" }}
+                >
+                  Color:
+                </Text>
+                <Text style={{ fontSize: 18 }}>
+                  {item.defaultArticle.color.text}
+                </Text>
+              </View>
               <View
                 style={{
                   marginTop: "4%",
@@ -199,33 +210,14 @@ const ProductInfo = ({ route }) => {
                   flex: 1,
                   flexDirection: "row",
                   justifyContent: "space-around",
+                  height: 75,
+                  shadowColor: "#000",
                 }}
               >
-                <View style={{ marginTop: "2%" }}>
-                  <Text
-                    style={{
-                      color: "#9B9B9B",
-                      fontSize: 16,
-                      marginLeft: "8%",
-                      fontWeight: "900",
-                    }}
-                  >
-                    Total Price
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: 22,
-                      marginLeft: "8%",
-                      fontWeight: "900",
-                    }}
-                  >
-                    {item.whitePrice.value}
-                  </Text>
-                </View>
                 <TouchableOpacity
                   onPress={() => addItemToCart(item)}
                   style={{
-                    width: 170,
+                    width: "85%",
                     height: 50,
                     backgroundColor: "#714E38",
                     marginTop: "3%",
@@ -240,21 +232,21 @@ const ProductInfo = ({ route }) => {
                       style={{
                         color: "#fff",
                         fontSize: 18,
-                        fontWeight: "600",
-                        marginLeft: "5%",
+                        fontWeight: "400",
+                        marginLeft: "2%",
                       }}
                     >
                       Added To Cart
                     </Text>
                   ) : (
                     <>
-                      <Image source={require("../assets/cart.png")} />
+                      <Icon name="shopping-cart" color="white" size={22} />
                       <Text
                         style={{
                           color: "#fff",
                           fontSize: 18,
-                          fontWeight: "600",
-                          marginLeft: "5%",
+                          fontWeight: "400",
+                          marginLeft: "3%",
                         }}
                       >
                         Add to cart
@@ -287,19 +279,18 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 30,
   },
-  topIconView: { 
+  topIconView: {
     flexDirection: "row",
     justifyContent: "space-between",
     backgroundColor: "rgba(238,230,219,0.8)",
   },
   prodImg: {
-    width: 355,
+    width: "100%",
     marginRight: 150,
-    height: 400,
-    marginTop: 10,
+    height: "100%",
   },
   prodImgView: {
-    height: 350,
+    height: 450,
     flex: 1,
     justifyContent: "center",
   },
@@ -326,5 +317,16 @@ const styles = StyleSheet.create({
   },
   selected: {
     backgroundColor: "#694A36",
+  },
+  wishbtn: {
+    width: 170,
+    height: 50,
+    backgroundColor: "#714E38",
+    borderRadius: 40,
+    marginLeft: "8%",
+    marginTop: "3%",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
   },
 });
