@@ -91,7 +91,11 @@ export default function Profile({ navigation }) {
               <Text style={styles.buttonText}>Delivery Address</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Privacy");
+            }}
+          >
             <View style={styles.button}>
               <Icon
                 name="lock"
@@ -109,18 +113,20 @@ export default function Profile({ navigation }) {
         <Text style={{ fontSize: 17, fontWeight: "bold" }}>Settings</Text>
       </View>
       <View>
-        <View style={styles.settingButton}>
-          <View style={styles.inssettingButton}>
-            <Icon
-              name="bell"
-              color="black"
-              size={21}
-              style={{ marginRight: 10 }}
-            />
-            <Text>Notification</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("Notification")}>
+          <View style={styles.settingButton}>
+            <View style={styles.inssettingButton}>
+              <Icon
+                name="bell"
+                color="black"
+                size={21}
+                style={{ marginRight: 10 }}
+              />
+              <Text>Notification</Text>
+            </View>
+            <Icon name="chevron-right" color="black" size={21} />
           </View>
-          <Icon name="chevron-right" color="black" size={21} />
-        </View>
+        </TouchableOpacity>
         <View style={styles.line}></View>
         <View style={styles.settingButton}>
           <View style={styles.inssettingButton}>

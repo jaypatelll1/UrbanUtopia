@@ -13,6 +13,8 @@ import ProductInfo from "../screens/ProductInfo";
 import Order from "../screens/Order";
 import Delivery from "../screens/Delivery";
 import PaymentMethod from "../screens/PaymentMethod";
+import Privacy from "../screens/Privacy";
+import Notification from "../screens/Notification";
 
 const Tab = createBottomTabNavigator();
 
@@ -84,6 +86,8 @@ export default function Appnav() {
       <Stack.Screen name="Order" component={Order}/>
       <Stack.Screen name="Delivery" component={Delivery}/>
       <Stack.Screen name="PaymentMethods" component={PaymentMethod}/>
+      <Stack.Screen name="Privacy" component={Privacy}/>
+      <Stack.Screen name="Notification" component={Notification}/>
 
     </Stack.Navigator>
   );
