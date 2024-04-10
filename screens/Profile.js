@@ -23,15 +23,22 @@ export default function Profile({ navigation }) {
   };
   return (
     <View>
-      <View>
+      <View >
         <Image
           style={styles.topI}
           source={require("../assets/home-icon.png")}
         />
       </View>
       <View style={styles.infocont}>
+        <View style={{marginRight:15}}>
+        <Image
+          source={require("../assets/11.jpg")}
+          style={{ width: 50, height: 50, borderRadius: 25 }}
+        /></View>
+        <View>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.email}>{email}</Text>
+        </View>
       </View>
       <TouchableOpacity>
         <View style={styles.Accountinfo}>
@@ -179,7 +186,8 @@ const styles = StyleSheet.create({
   },
   infocont: {
     marginTop: 20,
-    marginLeft: "20%",
+    marginLeft: "3%",
+    flexDirection: "row",
   },
   name: {
     fontWeight: "bold",

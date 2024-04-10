@@ -1,4 +1,4 @@
-import { View,StatusBar,StyleSheet } from "react-native";
+import { View,StatusBar,StyleSheet,Platform } from "react-native";
 import Appnav from "./navigation/Appnav";
 import Register from "./screens/Register";
 import Profile from "./screens/Profile";
@@ -25,6 +25,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight,
+    marginTop: Platform.OS === 'ios' ? StatusBar.currentHeight || 40 : StatusBar.currentHeight,
   },
 });
+
