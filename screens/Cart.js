@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   shopnowbtn: {
     height: 57,
     width: 177,
-    backgroundColor: "#724D38",
+    backgroundColor: "#333",
     borderRadius: 30,
     justifyContent: "center",
     alignItems: "center",

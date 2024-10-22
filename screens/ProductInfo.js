@@ -219,7 +219,7 @@ const ProductInfo = ({ route }) => {
                   style={{
                     width: "85%",
                     height: 50,
-                    backgroundColor: "#714E38",
+                    backgroundColor: "#333",
                     marginTop: "3%",
                     borderRadius: 40,
                     justifyContent: "center",
@@ -321,7 +321,7 @@ const styles = StyleSheet.create({
   wishbtn: {
     width: 170,
     height: 50,
-    backgroundColor: "#714E38",
+    backgroundColor: "#333",
     borderRadius: 40,
     marginLeft: "8%",
     marginTop: "3%",

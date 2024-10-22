@@ -59,7 +59,7 @@ export default function Profile({ navigation }) {
             <View style={styles.button}>
               <Icon
                 name="box"
-                color="black"
+                color="white"
                 size={30}
                 style={styles.buttonIcon}
               />
@@ -74,7 +74,7 @@ export default function Profile({ navigation }) {
             <View style={styles.button}>
               <Icon1
                 name="wallet"
-                color="black"
+                color="white"
                 size={30}
                 style={styles.buttonIcon}
               />
@@ -91,7 +91,7 @@ export default function Profile({ navigation }) {
             <View style={styles.button}>
               <Icon
                 name="truck"
-                color="black"
+                color="white"
                 size={30}
                 style={styles.buttonIcon}
               />
@@ -106,7 +106,7 @@ export default function Profile({ navigation }) {
             <View style={styles.button}>
               <Icon
                 name="lock"
-                color="black"
+                color="white"
                 size={30}
                 style={styles.buttonIcon}
               />
@@ -166,11 +166,11 @@ export default function Profile({ navigation }) {
         <View style={styles.signout}>
           <Icon
             name="log-out"
-            color="black"
+            color="white"
             size={21}
             style={{ marginRight: 5 }}
           />
-          <Text style={{ fontSize: 17, fontWeight: "500" }}>Sign out</Text>
+          <Text style={{ fontSize: 17, fontWeight: "500", color: "white"}}>Sign out</Text>
         </View>
       </TouchableOpacity>
     </View>
@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
   button: {
     width: 167,
     height: 71,
-    backgroundColor: "#FFF8F1",
+    backgroundColor: "#333",
     borderRadius: 8,
     flexDirection: "row",
     alignItems: "center",
@@ -230,6 +230,7 @@ const styles = StyleSheet.create({
     width: 80,
     fontSize: 15,
     fontWeight: "500",
+    color: "white",
   },
   settingT: {
     marginLeft: 15,
@@ -258,7 +259,7 @@ const styles = StyleSheet.create({
   signout: {
     width: 334,
     height: 41,
-    backgroundColor: "#FFF8F1",
+    backgroundColor: "#333",
     borderRadius: 5,
     flexDirection: "row",
     justifyContent: "center",
